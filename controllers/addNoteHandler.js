@@ -12,17 +12,23 @@ const addNoteHandler = async (req, res) => {
     return response(400, 'fail', { message: `Gagal menambahkan notes. mohon masukkan ${checkReqBody}` }, res);
   }
 
-  const result = await Notes.create({
-    title,
-    tags,
-    body,
-    createdAt,
-    updatedAt,
-  });
+  try {
+    const result = new Notes({
+      _id: 9,
+      title,
+      tags,
+      body,
+      createdAt,
+      updatedAt,
+    });
 
-  const { _id } = result;
+    const note = await result.save();
+    const { _id } = note;
 
-  return response(200, 'success', { message: 'Notes berhasil ditambahkan', data: { noteId: _id } }, res);
+    return response(200, 'success', { message: 'Notes berhasil ditambahkan', data: { noteId: _id } }, res);
+  } catch (err) {
+    return response(500, 'success', { message: `Notes gagal ditambahkan. ${err.name}` }, res);
+  }
 };
 
 export { addNoteHandler };

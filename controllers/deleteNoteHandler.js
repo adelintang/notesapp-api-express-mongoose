@@ -5,9 +5,13 @@ const deleteNoteHandler = async (req, res) => {
   const { id } = req.params;
 
   try {
-    await Notes.findByIdAndRemove(id);
+    const result = await Notes.deleteOne({ _id: id });
 
-    return response(200, 'success', { message: 'Notes berhasil dihapus' }, res);
+    if (result.deletedCount) {
+      return response(200, 'success', { message: 'Notes berhasil dihapus' }, res);
+    }
+
+    throw Error();
   } catch (err) {
     return response(404, 'fail', { message: 'Notes gagal dihapus. Id tidak ditemukan' }, res);
   }

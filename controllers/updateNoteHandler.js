@@ -13,11 +13,15 @@ const updateNoteHandler = async (req, res) => {
   }
 
   try {
-    await Notes.findByIdAndUpdate(id, {
+    const result = await Notes.updateOne({ _id: id }, {
       title, tags, body, updatedAt,
     });
 
-    return response(200, 'success', { message: 'Notes berhasil diperbarui' }, res);
+    if (result.modifiedCount) {
+      return response(200, 'success', { message: 'Notes berhasil diperbarui' }, res);
+    }
+
+    throw Error();
   } catch (err) {
     return response(404, 'fail', { message: 'Gagal memperbarui notes. Id tidak ditemukan' }, res);
   }
