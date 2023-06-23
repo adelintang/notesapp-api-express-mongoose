@@ -1,5 +1,5 @@
-import { response } from '../helpers/response.js';
-import { Notes } from '../model/model.js';
+import response from '../../helpers/response.js';
+import { Notes } from '../../model/model.js';
 
 const getDetailNoteHandler = async (req, res) => {
   const { id } = req.params;
@@ -12,4 +12,4 @@ const getDetailNoteHandler = async (req, res) => {
   }
 };
 
-export { getDetailNoteHandler };
+export default getDetailNoteHandler;

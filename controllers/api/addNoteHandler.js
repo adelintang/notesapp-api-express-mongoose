@@ -1,5 +1,5 @@
-import { response } from '../helpers/response.js';
-import { Notes } from '../model/model.js';
+import response from '../../helpers/response.js';
+import { Notes } from '../../model/model.js';
 
 const addNoteHandler = async (req, res) => {
   const { title, tags, body } = req.body;
@@ -31,4 +31,4 @@ const addNoteHandler = async (req, res) => {
   }
 };
 
-export { addNoteHandler };
+export default addNoteHandler;

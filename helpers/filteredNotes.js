@@ -5,4 +5,4 @@ const filteredNotes = (value) => value.reduce((acc, curr) => {
   return acc;
 }, []);
 
-export { filteredNotes };
+export default filteredNotes;

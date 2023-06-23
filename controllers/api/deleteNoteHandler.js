@@ -1,5 +1,5 @@
-import { response } from '../helpers/response.js';
-import { Notes } from '../model/model.js';
+import response from '../../helpers/response.js';
+import { Notes } from '../../model/model.js';
 
 const deleteNoteHandler = async (req, res) => {
   const { id } = req.params;
@@ -17,4 +17,4 @@ const deleteNoteHandler = async (req, res) => {
   }
 };
 
-export { deleteNoteHandler };
+export default deleteNoteHandler;

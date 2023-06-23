@@ -1,5 +1,5 @@
-import { response } from '../helpers/response.js';
-import { Notes } from '../model/model.js';
+import response from '../../helpers/response.js';
+import { Notes } from '../../model/model.js';
 
 const updateNoteHandler = async (req, res) => {
   const { id } = req.params;
@@ -27,4 +27,4 @@ const updateNoteHandler = async (req, res) => {
   }
 };
 
-export { updateNoteHandler };
+export default updateNoteHandler;
