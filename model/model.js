@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 export const MongooseConnect = async () => {
   try {
-    await mongoose.connect('mongodb://127.0.0.1:27017/notes');
+    await mongoose.connect(process.env.MONGO_URL);
     console.log('Connection to mongodb successfully');
   } catch (err) {
     console.log(`${err.name}: ${err.message}`);
@@ -12,6 +12,7 @@ export const MongooseConnect = async () => {
 };
 
 const notesSchema = new Schema({
+  username: String,
   title: String,
   tags: Array,
   body: String,

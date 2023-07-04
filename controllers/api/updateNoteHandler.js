@@ -2,6 +2,7 @@ import response from '../../helpers/response.js';
 import { Notes } from '../../model/model.js';
 
 const updateNoteHandler = async (req, res) => {
+  const { name } = req.user;
   const { id } = req.params;
   const { title, tags, body } = req.body;
   const updatedAt = new Date().toISOString();
@@ -13,6 +14,10 @@ const updateNoteHandler = async (req, res) => {
   }
 
   try {
+    const foundNotes = await Notes.find({ username: name });
+
+    if (!foundNotes) throw Error();
+
     const result = await Notes.updateOne({ _id: id }, {
       title, tags, body, updatedAt,
     });

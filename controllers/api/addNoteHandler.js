@@ -13,8 +13,9 @@ const addNoteHandler = async (req, res) => {
   }
 
   try {
+    const { name } = req.user;
     const result = new Notes({
-      _id: 9,
+      username: name,
       title,
       tags,
       body,
@@ -27,7 +28,7 @@ const addNoteHandler = async (req, res) => {
 
     return response(200, 'success', { message: 'Notes berhasil ditambahkan', data: { noteId: _id } }, res);
   } catch (err) {
-    return response(500, 'success', { message: `Notes gagal ditambahkan. ${err.name}` }, res);
+    return response(500, 'fail', { message: `Notes gagal ditambahkan. ${err.name}` }, res);
   }
 };
 
