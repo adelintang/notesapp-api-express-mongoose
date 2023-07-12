@@ -23,7 +23,7 @@ const tokenHandler = async (req, res) => {
         response(403, 'faile', { message: `${err.message}` }, res);
       }
 
-      const accessToken = generateAccessToken({ name: user.name });
+      const accessToken = generateAccessToken({ userId: user.userId });
       res.json({ accessToken });
     });
   } catch (err) {

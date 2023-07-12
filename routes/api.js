@@ -8,14 +8,14 @@ import authentication from '../middleware/authentication.js';
 
 const routerApi = express.Router();
 
-routerApi.post('/notes', authentication, addNoteHandler);
+routerApi.post('/api/notes', authentication, addNoteHandler);
 
-routerApi.get('/notes', authentication, getAllNotesHandler);
+routerApi.get('/api/notes', authentication, getAllNotesHandler);
 
-routerApi.get('/notes/:id', authentication, getDetailNoteHandler);
+routerApi.get('/api/notes/:id', authentication, getDetailNoteHandler);
 
-routerApi.put('/notes/:id', authentication, updateNoteHandler);
+routerApi.put('/api/notes/:id', authentication, updateNoteHandler);
 
-routerApi.delete('/notes/:id', authentication, deleteNoteHandler);
+routerApi.delete('/api/notes/:id', authentication, deleteNoteHandler);
 
 export default routerApi;

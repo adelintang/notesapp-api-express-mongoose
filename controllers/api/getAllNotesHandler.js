@@ -1,13 +1,21 @@
 import response from '../../helpers/response.js';
 import filteredNotes from '../../helpers/filteredNotes.js';
-import { Notes } from '../../model/model.js';
+import { Notes, User } from '../../model/model.js';
 
 const getAllNotesHandler = async (req, res) => {
-  const { name } = req.user;
-  const result = await Notes.find({ username: name });
-  const notes = filteredNotes(result);
+  try {
+    const { userId } = req.user;
+    const user = await User.findById(userId);
 
-  response(200, 'success', { data: { notes } }, res);
+    if (user.id !== userId) return response(403, 'fail', { message: 'Forbidden for user' }, res);
+
+    const result = await Notes.find({ userId });
+    const notes = filteredNotes(result);
+
+    return response(200, 'success', { data: { notes } }, res);
+  } catch (err) {
+    response(500, 'fail', { message: `${err.message}` }, res);
+  }
 };
 
 export default getAllNotesHandler;

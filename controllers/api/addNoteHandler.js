@@ -13,9 +13,9 @@ const addNoteHandler = async (req, res) => {
   }
 
   try {
-    const { name } = req.user;
+    const { userId } = req.user;
     const result = new Notes({
-      username: name,
+      userId,
       title,
       tags,
       body,

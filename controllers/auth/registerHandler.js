@@ -10,9 +10,9 @@ const registerHandler = async (req, res) => {
     return response(400, 'fail', { message: `Register gagal. masukkan ${checkIdentity}` }, res);
   }
 
-  const duplicateUsername = await User.findOne({ username });
-  if (duplicateUsername) {
-    return response(409, 'fail', { message: 'Username duplikat atau telah digunakan' }, res);
+  const duplicateEmail = await User.findOne({ email });
+  if (duplicateEmail) {
+    return response(409, 'fail', { message: 'Email duplikat atau telah digunakan' }, res);
   }
 
   const hashPassword = await bcrypt.hash(password, 10);

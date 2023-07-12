@@ -1,8 +1,8 @@
 import response from '../../helpers/response.js';
-import { Notes } from '../../model/model.js';
+import { Notes, User } from '../../model/model.js';
 
 const updateNoteHandler = async (req, res) => {
-  const { name } = req.user;
+  const { userId } = req.user;
   const { id } = req.params;
   const { title, tags, body } = req.body;
   const updatedAt = new Date().toISOString();
@@ -14,7 +14,10 @@ const updateNoteHandler = async (req, res) => {
   }
 
   try {
-    const foundNotes = await Notes.find({ username: name });
+    const user = await User.findById(userId);
+    if (user.id !== userId) return response(403, 'fail', { message: 'Forbidden for user' }, res);
+
+    const foundNotes = await Notes.find({ userId });
 
     if (!foundNotes) throw Error();
 

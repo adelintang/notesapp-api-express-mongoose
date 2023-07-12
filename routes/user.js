@@ -6,12 +6,12 @@ import logoutHandler from '../controllers/auth/logoutHandler.js';
 
 const routerUser = express.Router();
 
-routerUser.post('/register', registerHandler);
+routerUser.post('/user/auth/register', registerHandler);
 
-routerUser.post('/login', authHandler);
+routerUser.post('/user/auth/login', authHandler);
 
-routerUser.get('/token', tokenHandler);
+routerUser.get('/user/auth/token', tokenHandler);
 
-routerUser.delete('/logout', logoutHandler);
+routerUser.delete('/user/auth/logout', logoutHandler);
 
 export default routerUser;
